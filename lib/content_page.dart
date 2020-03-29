@@ -3,6 +3,9 @@ import 'package:book_reader/custom_appbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import 'card_free.dart';
+import 'card_share.dart';
+
 /// 显示内容部分
 class ContentPage extends StatefulWidget {
   // 定义page滑动的回调
@@ -45,8 +48,8 @@ class _ContentPageState extends State<ContentPage> {
               onPageChanged: widget.onPageChanged,
               children: <Widget>[
                 _wrapItem(CardRecommend()),
-                _wrapItem(CardRecommend()),
-                _wrapItem(CardRecommend()),
+                _wrapItem(CardShare()),
+                _wrapItem(CardFree()),
                 _wrapItem(CardRecommend()),
               ],
             ),

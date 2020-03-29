@@ -1,3 +1,4 @@
+import 'package:book_reader/card_recommend.dart';
 import 'package:book_reader/custom_appbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -15,13 +16,6 @@ class ContentPage extends StatefulWidget {
 }
 
 class _ContentPageState extends State<ContentPage> {
-  static List<Color> _colors = [
-    Colors.blue,
-    Colors.lightGreen,
-    Colors.amberAccent,
-    Colors.orange
-  ];
-
   PageController _pageController = PageController(
     viewportFraction: 0.8 // 设置视图比例
   );
@@ -50,10 +44,10 @@ class _ContentPageState extends State<ContentPage> {
               controller: _pageController,
               onPageChanged: widget.onPageChanged,
               children: <Widget>[
-                _wrapItem(0),
-                _wrapItem(1),
-                _wrapItem(2),
-                _wrapItem(3),
+                _wrapItem(CardRecommend()),
+                _wrapItem(CardRecommend()),
+                _wrapItem(CardRecommend()),
+                _wrapItem(CardRecommend()),
               ],
             ),
         ),
@@ -62,12 +56,10 @@ class _ContentPageState extends State<ContentPage> {
     );
   }
 
-  Widget _wrapItem(int index) {
+  Widget _wrapItem(Widget widget) {
     return new Padding(
         padding: EdgeInsets.all(10),
-        child: Container(
-          decoration: BoxDecoration(color: _colors[index]),
-        ),
+        child: widget,
     );
   }
 

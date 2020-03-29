@@ -22,8 +22,8 @@ class _TabNavigatorState extends State<TabNavigator> {
         decoration: BoxDecoration(
           gradient: LinearGradient(
             colors: [
-              Color(0x00ff00), //0xffedeef0
-              Color(0xffff00), //0xffe6e7e9
+              Color(0xffedeef0), //0xffedeef0
+              Color(0xffe6e7e9), //0xffe6e7e9
             ],
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,

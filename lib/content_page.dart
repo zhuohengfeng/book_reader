@@ -1,4 +1,6 @@
+import 'package:book_reader/custom_appbar.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 /// 显示内容部分
 class ContentPage extends StatefulWidget {
@@ -30,6 +32,7 @@ class _ContentPageState extends State<ContentPage> {
     if (widget.contentPageController != null) {
       widget.contentPageController._pageController = this._pageController;
     }
+    _statusBar();
     super.initState();
   }
 
@@ -38,7 +41,7 @@ class _ContentPageState extends State<ContentPage> {
     return Column(
       children: <Widget>[
         // 搜索栏 appbar
-
+        new CustomAppBar(),
         // 内容栏
         // 使用Expanded权重来分配子View的空间占比
         // 高度撑开，否则在column中没有指定高度会报错
@@ -66,6 +69,20 @@ class _ContentPageState extends State<ContentPage> {
           decoration: BoxDecoration(color: _colors[index]),
         ),
     );
+  }
+
+  /// 状态栏样式-沉浸式
+  _statusBar() {
+    SystemUiOverlayStyle uiOverlayStyle = SystemUiOverlayStyle(
+      systemNavigationBarColor: Color(0xFF000000),
+      systemNavigationBarDividerColor: null,
+      statusBarColor: Colors.transparent, // 沉浸式
+      systemNavigationBarIconBrightness: Brightness.light,
+      statusBarIconBrightness: Brightness.dark,
+      statusBarBrightness: Brightness.light,
+    );
+
+    SystemChrome.setSystemUIOverlayStyle(uiOverlayStyle);
   }
 }
 

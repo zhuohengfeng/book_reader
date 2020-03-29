@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'content_page.dart';
+
 /// 底部导航条
 class TabNavigator extends StatefulWidget {
   @override
@@ -10,6 +12,7 @@ class _TabNavigatorState extends State<TabNavigator> {
   final _defaultColor = Colors.grey;
   final _activeColor = Colors.blue;
   int _currentIndex = 0;
+  final ContentPageController _contentPageController = ContentPageController();
 
   @override
   Widget build(BuildContext context) {
@@ -26,17 +29,22 @@ class _TabNavigatorState extends State<TabNavigator> {
             end: Alignment.bottomCenter,
           ),
         ),
-        child: Center(
-          child: Text(
-            '你点击了第 $_currentIndex 个tab',
-            style: TextStyle(fontSize: 36, color: Colors.blue),
-          ),
+        child: ContentPage(
+          contentPageController: _contentPageController,
+          onPageChanged: (index) {
+            // 修改状态
+            setState(() {
+              _currentIndex = index;
+            });
+          },
         ),
       ),
       /// 底部导航条
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _currentIndex,
         onTap: (index) {
+          // 点击tab，滑动viewpage
+          _contentPageController.jumpToPage(index);
           // 修改状态
           setState(() {
             _currentIndex = index;
@@ -47,7 +55,7 @@ class _TabNavigatorState extends State<TabNavigator> {
           _bottomItem('本周', Icons.folder, 0),
           _bottomItem('分享', Icons.explore, 1),
           _bottomItem('免费', Icons.donut_small, 2),
-          _bottomItem('长按', Icons.person, 3),
+          _bottomItem('长安', Icons.person, 3),
         ],
         type: BottomNavigationBarType.fixed,
       ),
